@@ -1,0 +1,52 @@
+
+
+Code:
+#include<stdio.h>
+#include<conio.h>
+#include<dos.h>
+#include<graphics.h>
+int main()
+{
+    int gd,gm;
+    detectgraph(&gd,&gm);
+    initgraph(&gd,&gm,"C:\\MinGW\\lib\\libbgi.a");
+    while(!kbhit())
+    {
+        for(int i=320,j=50; i>=0,j<=240; i--,j++)
+        {
+                setcolor(RED);
+                circle(i,j,50);
+                delay(10);
+                cleardevice();
+
+        }
+        for(int k=130,l=240; k<=320,l<=425; k++,l++)
+        {
+                setcolor(BLUE);
+                circle(k,l,50);
+                delay(10);
+                cleardevice();
+
+        }
+
+        for(int m=320,n=425; m<=588,n>=240; m++,n--)
+        {
+                setcolor(GREEN);
+                circle(m,n,50);
+                delay(10);
+                cleardevice();
+        }
+
+        for(int o=505,p=240; o>=320,p>=50; o--,p--)
+        {
+                setcolor(WHITE);
+                circle(o,p,50);
+                delay(10);
+                cleardevice();
+
+        }
+    }
+    getch();
+    closegraph();
+    return 0;
+}
