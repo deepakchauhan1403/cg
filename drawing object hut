@@ -1,0 +1,21 @@
+1.1	Hut
+Code:
+#include<stdio.h>
+#include<graphics.h>
+#include<conio.h>
+int main()
+{	int gd,gm;
+	gd=DETECT;
+	initgraph(&gd,&gm,"");
+	line(40,120,105,50);
+	line(40,120,170,120);
+	line(105,50,170,120);
+	rectangle(40,120,170,200);
+	rectangle(170,120,300,200);
+	rectangle(80,150,130,200);
+	line(105,50,280,50);
+	line(280,50,300,120);
+	getch();
+	closegraph();
+}
+
