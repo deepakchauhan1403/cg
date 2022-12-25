@@ -1,0 +1,110 @@
+Code:
+#include <stdio.h>
+#include <conio.h>
+#include <graphics.h>
+int graph_rect()
+{
+    int x1, y1, x2, y2, tx, ty;
+    printf("Enter the coordinates of the rectangle: ");
+    scanf("%d %d %d %d", &x1, &y1, &x2, &y2);
+    printf("Enter the value of TX: ");
+    scanf("%d", &tx);
+    printf("Enter the value of TY: ");
+    scanf("%d", &ty);
+    rectangle(x1, y1, x2, y2);
+    outtextxy(x1, y1 + 30, "Orignal Position.");
+    rectangle(x1 + tx, y1 + ty, x2 + tx, y2 + ty);
+    outtextxy(x1 + tx, y1 + 30 + ty, "Translated Position.");
+    return 0;
+}
+int graph_circle()
+{
+    int x1, y1, r, tx, ty;
+    printf("Enter the coordinates of the circle: ");
+    scanf("%d %d", &x1, &y1);
+    printf("Enter the value of radius: ");
+    scanf("%d", &r);
+    printf("Enter the value of TX: ");
+    scanf("%d", &tx);
+    printf("Enter the value of TY: ");
+    scanf("%d", &ty);
+    circle(x1, y1, r);
+    outtextxy(x1 - 20, y1 + 50, "Orignal Position.");
+    circle(x1 + tx, y1 + ty, r);
+    outtextxy(x1 + tx - 20, y1 + 50 + ty, "Translated Position.");
+    return 0;
+}
+int graph_tri()
+{
+    int x1, y1, x2, y2, x3, y3, tx, ty;
+    printf("Enter the coordinates for the side 1(All 2 coordinates): ");
+    scanf("%d %d %d %d", &x1, &y1, &x2, &y2);
+    printf("Enter the coordinates for the side 2(Only 1 coordinate): ");
+    scanf("%d %d", &x3, &y3);
+    printf("Enter the value of TX: ");
+    scanf("%d", &tx);
+    printf("Enter the value of TY: ");
+    scanf("%d", &ty);
+    line(x1, y1, x2, y2);
+    line(x1, y1, x3, y3);
+    line(x2, y2, x3, y3); // base side
+    outtextxy(x2, y2 + 20, "Orignal Position");
+    line(x1 + tx, y1 + ty, x2 + tx, y2 + ty);
+    line(x1 + tx, y1 + ty, x3 + tx, y3 + ty);
+    line(x2 + tx, y2 + ty, x3 + tx, y3 + ty); // base side
+    outtextxy(x2 + tx, y2 + 20 + ty, "Translated Position");
+    return 0;
+}
+int graph_ellipse()
+{
+    int x1, y1, r1, r2, tx, ty;
+    printf("Enter the coordinates for the ellipse: ");
+    scanf("%d %d", &x1, &y1);
+    printf("Enter the foci for the ellipse: ");
+    scanf("%d %d", &r1, &r2);
+    printf("Enter the value of TX: ");
+    scanf("%d", &tx);
+    printf("Enter the value of TY: ");
+    scanf("%d", &ty);
+    ellipse(x1, y1, 0, 360, r1, r2);
+    outtextxy(x1 - 30, y1 + 60, "Orignal Position");
+    ellipse(x1 + tx, y1 + ty, 0, 360, r1, r2);
+    outtextxy(x1 - 30 + tx, y1 + 60 + ty, "Translated Position");
+    return 0;
+}
+
+int main()
+{
+    int gd, gm, op;
+    char path[] = "C:\\MinGW\\lib\\libbgi.a";
+    printf("Shape MENU\n");
+    printf("1. Rectangle\n");
+    printf("2. Circle\n");
+    printf("3. Triangle\n");
+    printf("4. Ellipse\n");
+    printf("Enter your choice from the menu options: ");
+    scanf("%d", &op);
+    detectgraph(&gd, &gm);
+    initgraph(&gd, &gm, path);
+    switch (op)
+    {
+    case 1:
+        graph_rect();
+        break;
+    case 2:
+        graph_circle();
+        break;
+    case 3:
+        graph_tri();
+        break;
+    case 4:
+        graph_ellipse();
+        break;
+    default:
+        printf("Invalid Input!");
+        exit(0);
+    }
+    getch();
+    closegraph();
+    return 0;
+}
