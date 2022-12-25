@@ -1,0 +1,37 @@
+
+
+Code:
+#include<stdio.h>
+#include<graphics.h>
+#include<dos.h>
+#include<conio.h>
+#include<math.h>
+int main()
+{
+    int gd,gm;
+    int rx1,ry1,rx2,ry2,i=320,j=240;
+    double degree,radian;
+    detectgraph(&gd,&gm);
+    initgraph(&gd,&gm,"C:\\MinGW\\lib\\libbgi.a");
+    for(degree=0; degree<=360 && !kbhit(); degree++)
+    {
+        radian = degree*0.01745;
+        rx1=(int)(i +((320-i)*cos(radian)+(425-j)*sin(radian)));
+        ry1=(int)(j +((320-i)*sin(radian)-(425-j)*cos(radian)));
+        rx2=(int)(i +((320-i)*cos(-radian)+(140-j)*sin(-radian)));
+        ry2=(int)(j +((320-i)*sin(-radian)-(140-j)*cos(-radian)));
+        circle(rx2,ry2,50);
+        circle(rx1,ry1,35);
+        circle(i,j,150);
+        delay(50);
+        cleardevice();
+        if(degree==360)
+        {
+            degree=0;
+        }
+    }
+    getch();
+    closegraph();
+    return 0;
+
+}
