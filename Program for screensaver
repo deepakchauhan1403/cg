@@ -1,0 +1,25 @@
+
+
+Code:
+#include<iostream.h>
+#include<graphics.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<dos.h>
+#include<stdio.h>
+void main()
+{
+ int gd=DETECT,gm,col=480,row=640,dir=2,s=8,c=15,f=4;
+  initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+  cleardevice();
+  while (!kbhit())
+  {  
+   settextstyle(random(f),random(dir),random(s));
+    setcolor(random(c));
+    outtextxy(random(col),random(row),"COMPUTER GRAPHICS!!!!");
+    delay(250);
+  }
+  getch();
+  closegraph();
+}
+
