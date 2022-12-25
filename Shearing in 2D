@@ -1,0 +1,55 @@
+
+
+Code:
+#include<stdio.h>
+#include<graphics.h>
+#include<conio.h>
+int main()
+{
+int gd=DETECT,gm;
+int x,y,x1,y1,x2,y2,shear_f,op;
+initgraph(&gd,&gm,"C:\\MinGW\\lib\\libbgi.a");
+printf("\n please enter first coordinate = ");
+scanf("%d %d",&x,&y);
+printf("\n please enter second coordinate = ");
+scanf("%d %d",&x1,&y1);
+printf("\n please enter third coordinate = ");
+scanf("%d %d",&x2,&y2);
+printf("\n please enter shearing factor = ");
+scanf("%d",&shear_f);
+line(x,y,x1,y1);
+line(x1,y1,x2,y2);
+line(x2,y2,x,y);
+printf("MENU\n");
+printf("1. Shearing about x-axis.\n");
+printf("2. Shearing about y-axis.\n");
+printf("Enter your choice: ");
+scanf("%d", &op);
+switch(op)
+{
+    case 1:
+        setcolor(6);
+        x=x+ y*shear_f;
+        x1=x1+ y1*shear_f;
+        x2=x2+ y2*shear_f;
+
+        line(x,y,x1,y1);
+        line(x1,y1,x2,y2);
+        line(x2,y2,x,y);
+        break;
+    case 2:
+        setcolor(6);
+        y=y+ x*shear_f;
+        y1=y1+ x1*shear_f;
+        y2=y2+ x2*shear_f;
+
+        line(x,y,x1,y1);
+        line(x1,y1,x2,y2);
+        line(x2,y2,x,y);
+        break;
+}
+outtextxy(240,5,"Sheared Object is in Yellow colour!");
+getch();
+closegraph();
+return 0;
+}
