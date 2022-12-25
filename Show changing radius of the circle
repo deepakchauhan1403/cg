@@ -1,0 +1,30 @@
+
+Code:
+#include<stdio.h>
+#include<dos.h>
+#include<graphics.h>
+#include<conio.h>
+int main()
+{
+    int gd,gm,r;
+    detectgraph(&gd,&gm);
+    initgraph(&gd,&gm,"C:\\MinGW\\lib\\libbgi.a");
+    while(!kbhit())
+    {
+        for(r = 5; r<=238; r++)
+        {
+            circle(320,240,r);
+            delay(5);
+            cleardevice();
+        }
+        for(r=238;r>=5;r--)
+        {
+            circle(320,240,r);
+            delay(5);
+            cleardevice();
+        }
+    }
+    getch();
+    closegraph();
+    return 0;
+}
