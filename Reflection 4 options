@@ -1,0 +1,163 @@
+#include <stdio.h>
+#include <graphics.h>
+#include <conio.h>
+
+void xaxis(int x1, int y1, int x2, int y2)
+{
+ cleardevice();
+int imat[3][2] = {{x1, x2}, {y1, y2}, {1, 1}};
+int refmat[3][3] = {{1, 0, 0}, {0, -1, 0}, {0, 0, 1}};
+int rmat[3][2];
+outtextxy(10,10,"Reflection about x-axis");
+rectangle(x1, y1, x2, y2);
+for (int i = 0; i < 3; i++)
+{
+ for (int j = 0; j < 3; j++)
+{
+ rmat[i][j] = 0;
+for (int k = 0; k < 3; k++)
+{
+ rmat[i][j] += refmat[i][k] * imat[k][j];
+    }
+  }
+}
+rectangle(rmat[0][0], 480 + rmat[1][0], rmat[0][1], 480 + rmat[1][1]);
+}
+
+void yaxis(int x1, int y1, int x2, int y2)
+{
+ cleardevice();
+int imat[3][2] = {{x1, x2}, {y1, y2}, {1, 1}};
+ int refmat[3][3] = {{-1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+ int rmat[3][2];
+ outtextxy(10,10,"Reflection about y-axis");
+ rectangle(x1, y1, x2, y2);
+ for (int i = 0; i < 3; i++)
+ {
+for (int j = 0; j < 3; j++)
+{
+rmat[i][j] = 0;
+for (int k = 0; k < 3; k++)
+{
+rmat[i][j] += refmat[i][k] * imat[k][j];
+}}}rectangle(640 + rmat[0][0], rmat[1][0], 640 + rmat[0][1], rmat[1][1]);
+}
+
+void xyper(int x1, int y1, int x2, int y2)
+{
+cleardevice();
+int imat[3][2] = {{x1, x2}, {y1, y2}, {1, 1}};
+int refmat[3][3] = {{-1, 0, 0}, {0, -1, 0}, {0, 0, 1}};
+int rmat[3][2];
+outtextxy(10,10,"Reflection about an axis perpendicular to xy-plane.");
+rectangle(x1, y1, x2, y2);
+for (int i = 0; i < 3; i++)
+{
+ for (int j = 0; j < 3; j++)
+{
+rmat[i][j] = 0;
+for (int k = 0; k < 3; k++)
+{
+rmat[i][j] += refmat[i][k] * imat[k][j];
+}  }
+ }
+ rectangle(640 + rmat[0][0], 480 + rmat[1][0], 640 + rmat[0][1], 480 + rmat[1][1]);
+}
+
+void yeqx(int x1, int y1, int x2, int y2)
+{
+ cleardevice();
+line(640, 0, 0, 480);
+int imat[3][2] = {{x1, x2}, {y1, y2}, {1, 1}};
+int refmat[3][3] = {{0, 1, 0}, {1, 0, 0}, {0, 0, 1}};
+ int rmat[3][2];
+outtextxy(10,10,"Reflection about the line y = x");
+rectangle(x1, y1, x2, y2);
+ for (int i = 0; i < 3; i++)
+ {
+ for (int j = 0; j < 3; j++)
+ {
+  rmat[i][j] = 0;
+ for (int k = 0; k < 3; k++)
+	{
+	rmat[i][j] += refmat[i][k] * imat[k][j];
+	}
+}
+ }
+rectangle(60+rmat[0][0], 60+rmat[1][0], 60+rmat[0][1], 60+rmat[1][1]);
+}
+
+void yeqmx(int x1, int y1, int x2, int y2)
+{
+cleardevice();
+ line(0, 0, 640, 480);
+int imat[3][2] = {{x1, x2}, {y1, y2}, {1, 1}};
+ int refmat[3][3] = {{0, -1, 0}, {-1, 0, 0}, {0, 0, 1}};
+ int rmat[3][2];
+ outtextxy(355,30,"Reflection about the line y = -x");
+rectangle(x1, y1, x2, y2);
+for (int i = 0; i < 3; i++)
+ {
+ for (int j = 0; j < 3; j++)
+{
+ rmat[i][j] = 0;
+ for (int k = 0; k < 3; k++)
+ {
+ rmat[i][j] += refmat[i][k] * imat[k][j];
+ }
+ }
+ }
+rectangle(640 + rmat[0][0], 480 + rmat[1][0], 640 + rmat[0][1], 480 + rmat[1][1]);
+}
+
+void menu()
+{
+ int x1, y1, x2, y2, op;
+ printf("Enter the coordinates of the rectangle: ");
+scanf("%d %d %d %d", &x1, &y1, &x2, &y2);
+ printf("MENU\n");
+printf("1. Reflection about x-axis.\n");
+printf("2. Reflection about y-axis.\n");
+ printf("3. Reflection about an axis perpendicular to xy-plane.\n");
+printf("4. Reflection about the line y = x.\n");
+ printf("5. Reflection about the line y = -x.\n");
+printf("Enter your choice: ");
+scanf("%d", &op);
+ switch (op)
+{
+case 1:
+ xaxis(x1, y1, x2, y2);
+break;
+ case 2:
+ yaxis(x1, y1, x2, y2);
+break;
+case 3:
+ xyper(x1, y1, x2, y2);
+ break;
+case 4:
+ yeqx(x1, y1, x2, y2);
+ break;
+ case 5:
+ yeqmx(x1, y1, x2, y2);
+ break;
+ default:
+printf("Wrong option entered!");
+ break;
+ }
+}
+
+int main()
+{
+int gd=DETECT, gm;
+initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+ menu();
+ line(320, 0, 320, 480);
+line(0, 240, 640, 240);
+outtextxy(335,10,"Y");
+ outtextxy(630,250,"X");
+ outtextxy(335,458,"Y'");
+ outtextxy(5,250,"X'");
+getch();
+closegraph();
+return 0;
+}
