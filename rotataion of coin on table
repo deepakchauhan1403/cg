@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+void coin()
+{
+ while(!kbhit())
+ {
+ for(int i=20;i>=0;i--)
+ {
+ fillellipse(230,100,i,20);
+ setfillstyle(5,1);
+ rectangle(150,150,300,200);
+ rectangle(150,200,180,400);
+ rectangle(270,200,300,400);
+ delay(50);
+ cleardevice();
+ }
+ for(int j =0;j<=20;j++)
+ {
+ fillellipse(230,100,j,20);
+ setfillstyle(5,1);
+ rectangle(150,150,300,200);
+ rectangle(150,200,180,400);
+ rectangle(270,200,300,400);
+ delay(50);
+ cleardevice;
+ }
+ }
+}
+int main()
+{
+int gd,gm;
+detectgraph(&gd,&gm);
+initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+coin();
+getch();
+
+closegraph();
+return 0;
+}
+
