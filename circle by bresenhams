@@ -1,51 +1,42 @@
-Code:
-#include<graphics.h>
 #include<conio.h>
 #include<stdio.h>
-void EightPts(int xc,int yc,int x,int y);
-void sectors(int x1, int y1, int r);
-int main(){
-	int xc=200, yc=200, r=100;
-	int gd=DETECT;
-	int gm;
-	initgraph(&gd, &gm, "");
-	sectors(xc,yc,r);
-	getch();
-	closegraph();
-}
-void EightPts(int xc,int yc,int x,int y)  
-   {  
-    putpixel(x+xc,y+yc,15);  
-    delay(10);
-    putpixel(x+xc,-y+yc,RED);  
-    delay(10);
-    putpixel(-x+xc,-y+yc,BLUE);  
-    delay(10);
-    putpixel(-x+xc,y+yc,6);  
-    delay(10);
-    putpixel(y+xc,x+yc,7);  
-    delay(10);
-    putpixel(y+xc,-x+yc,8);  
-    delay(10);
-    putpixel(-y+xc,-x+yc,9);  
-    delay(10);
-    putpixel(-y+xc,x+yc,10);  
-    delay(10);
-   }  
-void sectors(int xc, int yc, int r){
-	int x=0, y=r;
-	int d=3-2*r;
-	EightPts(xc,yc,x,y);
-	while(x<=y){
-		if(d<0)
-		d=d+4*x+6;
-		else
+#include<graphics.h>
+void drawCircle(int xc,int yc,int x, int y)
 {
-			d=d+4*(x-y)+10;
-			y--;
-		}
-		x++;
-		printf("%d %d\n",x,y);
-		EightPts(xc,yc,x,y);
-	}
+  putpixel(xc+x,yc+y,2);
+  putpixel(xc-x,yc+y,2);
+  putpixel(xc+x,yc-y,2);
+  putpixel(xc-x,yc-y,2);
+  putpixel(xc+y,yc+x,2);
+  putpixel(xc-y,yc+x,2);
+  putpixel(xc+y,yc-x,2);
+  putpixel(xc-y,yc-x,2);}
+  void circleBres(int xc,int yc,int r)
+  { int x=0,y=r;
+  int d=3-2*r;
+  drawCircle(xc,yc,x,y);
+  while(y>=x)
+  { x++;
+   if(d>0)
+   {
+     y--;
+     d=d+4*(x-y)+10;}
+     else
+      d=d+4*x+6;
+     drawCircle(xc,yc,x,y);
+    }
+    }
+int main()
+{
+ int xc,yc,r;
+ int gd=DETECT,gm;
+ initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+ printf("Enter the coordinates:");
+ scanf("%d %d",&xc,&yc);
+ printf("Enter the radius of the circle:");
+ scanf("%d",&r);
+ circleBres(xc,yc,r);
+ getch();
+ closegraph();
+ return 0;
 }
