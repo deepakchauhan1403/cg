@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <conio.h>
+#include <graphics.h>
+int graph_circle()
+{
+ int x1, y1, r, tx, ty;
+ printf("Enter the coordinates of the circle: ");
+ scanf("%d %d", &x1, &y1);
+ printf("Enter the value of radius: ");
+ scanf("%d", &r);
+ printf("Enter the value of TX: ");
+ scanf("%d", &tx);
+ printf("Enter the value of TY: ");
+ scanf("%d", &ty);
+ circle(x1, y1, r);
+ outtextxy(x1 - 20, y1 + 50, "Orignal Position.");
+ circle(x1 + tx, y1 + ty, r);
+ outtextxy(x1 + tx - 20, y1 + 50 + ty, "Translated Position.");
+ return 0;
+ }
+int main()
+{
+ int gd=DETECT, gm;
+ initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+ graph_circle();
+ getch();
+ closegraph();
+ return 0;
+}
